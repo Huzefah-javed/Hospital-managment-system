@@ -11,6 +11,7 @@ class Patient: public Person{
     string password;
     vector<string> medicalHistory;
     vector<string> appointments;
+    vector<string>NotesByDoctors;
     
     Patient();
 

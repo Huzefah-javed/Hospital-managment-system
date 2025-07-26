@@ -1,4 +1,5 @@
  #include <iostream>
+ #include <limits>
  #include"Doctor.h"
  #include"Patient.h"
  #include"Hospital.h"
@@ -116,9 +117,9 @@ using namespace std;
             string inputPatientId;
             string inputPatientPassword;
             string patientChoosedDocId;
-            Doctor * patientChoosedDoc;
-            Patient * patientProfile;
-            int patientChoice;
+            Doctor * patientChoosedDoc = nullptr;
+            Patient * patientProfile = nullptr;
+            int patientChoice = 0;
             cout<<"Enter your patient ID: ";
             cin>>inputPatientId;
             cout<<"Enter your your password: ";
@@ -129,9 +130,16 @@ using namespace std;
                     patientProfile = &patient;
                 } 
             }
-            cout<<"welcome "<<patientProfile->name<<endl;
-            cout<<"1. Book appointment"<<endl;
-            cout<<"2. view All doctors"<<endl;
+            while (patientChoice != 4){
+            if (patientProfile != nullptr)
+            {
+                    
+                
+                cout<<"welcome "<<patientProfile->name<<endl;
+                cout<<"1. Book appointment"<<endl;
+                cout<<"2. view All doctors"<<endl;
+            cout<<"3. view profile detail"<<endl;
+            cout<<"4. logout"<<endl;
             cout<<"Enter your choice: ";
             cin>>patientChoice;
             if (patientChoice == 1)
@@ -144,15 +152,30 @@ using namespace std;
                 bookAppointment(*(patientProfile), *(patientChoosedDoc));
             }else if(patientChoice == 2){
                 showAllDoctors();
+            }else if (patientChoice == 3){
+                patientProfile->displayInfo();
+            }
+            else if (patientChoice == 4)
+            {
+                break;
             }
             
+       }else{
+            patientChoice = 4;
+            cout<<"unable to login"<<endl;
+            cout<<"plz enter correct id or password"<<endl;
+        }
+    }
         }
 
         void HospitalSystem::EnteringInDoctorProfile(){
             string inputDocId;
             string inputDocPassword;
             int doctorChoice;
-            Doctor doctorProfile;
+            string patientIdPickByDoc;
+            Patient * patientPickByDoc = nullptr;
+            Doctor * doctorProfile = nullptr;
+            string docNote;
             cout<<"-----------------------------------------"<<endl;
             cout<<"Enter your Doctor Id: ";
             cin>>inputDocId;
@@ -163,33 +186,60 @@ using namespace std;
                 if (doc.doctorID == inputDocId && doc.password == inputDocPassword) 
                 {
                     cout<<"Login successfully"<<endl;
-                    doctorProfile = doc;
+                    doctorProfile = &doc;
+
                 }
                 
             }
-            while (doctorChoice != 3)
+            
+            while (doctorChoice != 4)
             {
-            cout<<"Welcome Dr "<<doctorProfile.name<<endl;
+                if (doctorProfile != nullptr){
+            cout<<"Welcome Dr "<<doctorProfile->name<<endl;
             cout<<"1. View All Appointed Patients"<<endl;
             cout<<"2. Write Prescription / Notes"<<endl;
+            cout<<"3. view profile"<<endl;
+            cout<<"4. logout"<<endl;
 
-                
                 
                 cout<<"Enter your choice: ";
                 cin>>doctorChoice;
                 if (doctorChoice == 1)
                 {
-                    cout<<"patient count: "<<doctorProfile.appointedPatients.size()<<endl;
-                for(auto appointPatient: doctorProfile.appointedPatients){
+                    cout<<"-------------------------------"<<endl;
+                for(auto appointPatient: doctorProfile->appointedPatients){
                     cout<<appointPatient.name<<"  "<<appointPatient.patientID<<endl;
                     cout<<"Age: "<<appointPatient.age<<"  Gender: "<<appointPatient.gender<<endl;
+                    cout<<"Medical history: ";
                     for(auto disease: appointPatient.medicalHistory){
                         
-                        cout<<"Medical history: "<<disease<<" , ";
+                        cout<<"-"<<disease<<"-";
                     }
                     cout<<endl;
                 }
+            }else if (doctorChoice == 2){
+                cout<<"Enter patient ID: ";
+                cin>>patientIdPickByDoc;
+                for(auto & patient: patients){
+                    if(patient.patientID == patientIdPickByDoc) patientPickByDoc = &patient; 
+                }
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                getline(cin, docNote);
+
+                docNote += " by Dr " + doctorProfile->name;
+                patientPickByDoc->NotesByDoctors.push_back(docNote);
+            }else if (doctorChoice == 3){
+                doctorProfile->displayInfo();
+            }else if (doctorChoice == 4)
+            {
+                break;
             }
             
+            
+        }else{
+            doctorChoice = 4;
+            cout<<"unable to login"<<endl;
+            cout<<"plz enter correct id or password"<<endl;
         }
+    }
         }
