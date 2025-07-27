@@ -2,9 +2,7 @@
  #include <limits>
  #include"Doctor.h"
  #include"Patient.h"
- #include"Hospital.h"
- #include"Room.h"
- #include"Staff.h"
+ #include "Hospital.h"
  #include<vector>
 using namespace std;
  
