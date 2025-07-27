@@ -69,8 +69,9 @@ Example with `g++`:
 g++ main.cpp Doctor.cpp Patient.cpp Hospital.cpp -o hospital_system
 ./hospital_system
 
+```
 
-What I Learned
+# What I Learned
 Deep understanding of Object-Oriented Programming in C++
 
 Structuring multi-file projects cleanly
@@ -81,7 +82,7 @@ Building interactive CLI-based systems
 
 Error handling and input validation
 
-📈 Future Improvements
+# 📈 Future Improvements
 File I/O for persistent data storage
 
 Admin module to view analytics
@@ -92,10 +93,10 @@ Better UI with colors and formatting
 
 GUI version using Qt or another framework
 
-🤝 Contribution
+# 🤝 Contribution
 This is a solo project built for learning purposes. However, feel free to fork it, suggest improvements, or use it as a reference for your own OOP practice.
 
-#📧 Contact
-#Made by Huzefa Javed
-#🧠 1st-semester Software Engineering student with a passion for backend development and system design.
-#📬 Huzefahjaved@gmail.com
+# 📧 Contact
+# Made by Huzefa Javed
+# 🧠 1st-semester Software Engineering student with a passion for backend development and system design.
+# 📬 Huzefahjaved@gmail.com
