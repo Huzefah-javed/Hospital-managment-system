@@ -95,7 +95,7 @@ GUI version using Qt or another framework
 🤝 Contribution
 This is a solo project built for learning purposes. However, feel free to fork it, suggest improvements, or use it as a reference for your own OOP practice.
 
-📧 Contact
-Made by Huzefa Javed
-🧠 1st-semester Software Engineering student with a passion for backend development and system design.
-📬 Huzefahjaved@gmail.com
+#📧 Contact
+#Made by Huzefa Javed
+#🧠 1st-semester Software Engineering student with a passion for backend development and system design.
+#📬 Huzefahjaved@gmail.com
